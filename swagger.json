@@ -1,0 +1,502 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "My Demo API",
+        "version": "0.1"
+    },
+    "servers": [
+        {
+            "url": "http://a.skyunion.net",
+            "description": "production"
+        },
+        {
+            "url": "http://a-pre.skyunion.net",
+            "description": "preproduction"
+        }
+    ],
+    "paths": {
+        "/api/demo/get": {
+            "get": {
+                "tags": [
+                    "internal"
+                ],
+                "description": "get类型api，参数为query，有header要求，返回json",
+                "operationId": "DemoApiController::get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "test id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "test  name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    },
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/get": {
+            "get": {
+                "tags": [
+                    "internal"
+                ],
+                "description": "get类型api，参数为query，有header要求，返回json",
+                "operationId": "TestApiController::get",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "test id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "test  name",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "test"
+                    },
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/getlist": {
+            "get": {
+                "tags": [
+                    "public"
+                ],
+                "description": "get类型api，参数为query，有header要求，返回json数组",
+                "operationId": "TestApiController::getList",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "query",
+                        "description": "project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "required": [
+                                                    "id",
+                                                    "name"
+                                                ],
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/create-project": {
+            "post": {
+                "tags": [
+                    "public"
+                ],
+                "description": "post类型api，参数为json，有header要求，返回json",
+                "operationId": "TestApiController::createProject",
+                "parameters": [
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the pet",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the pet",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/update-project": {
+            "post": {
+                "tags": [
+                    "internal"
+                ],
+                "description": "post类型api，参数为form表单，有header要求，返回json",
+                "operationId": "TestApiController::updateProjectWithForm",
+                "parameters": [
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "required": [
+                                    "name"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "description": "Updated name of the pet",
+                                        "type": "string"
+                                    },
+                                    "status": {
+                                        "description": "Updated status of the pet",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/update-project-json": {
+            "post": {
+                "tags": [
+                    "internal"
+                ],
+                "description": "post类型api，参数为json，ref对象，有header要求，返回json",
+                "operationId": "TestApiController::updateProjectWithJSON",
+                "parameters": [
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "requestBody": {
+                    "description": "Input data format",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Project"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "id": {
+                                                    "type": "integer"
+                                                },
+                                                "name": {
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/resource/getlistjsonshema": {
+            "get": {
+                "tags": [
+                    "public"
+                ],
+                "description": "get类型api，参数为query，有header要求，返回json,ref对象",
+                "operationId": "TestApiController::getListJSONShema",
+                "parameters": [
+                    {
+                        "name": "project_id",
+                        "in": "query",
+                        "description": "project id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "igg-sdk-id",
+                        "in": "header",
+                        "description": "igg-sdk-id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "11-11-11"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An example resource",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "required": [
+                                        "code",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "code": {
+                                            "type": "integer"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Project"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Project": {
+                "required": [
+                    "id",
+                    "name"
+                ],
+                "properties": {
+                    "id": {
+                        "description": "The product id",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "The product name",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
